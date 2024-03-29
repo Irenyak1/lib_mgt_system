@@ -1,0 +1,24 @@
+{
+  "name": "lib_mgt_system",
+  "version": "1.0.0",
+  "description": "Library Management System",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Irenyak1/lib_mgt_system.git"
+  },
+  "keywords": [
+    "Library",
+    "Management",
+    "System"
+  ],
+  "author": "Irene Nyakate",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Irenyak1/lib_mgt_system/issues"
+  },
+  "homepage": "https://github.com/Irenyak1/lib_mgt_system#readme"
+}
