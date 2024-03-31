@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for centering the form */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .edit-book-form {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="edit-book-form">
+        <h2 class="text-center mb-4">Edit Book Details</h2>
+        <form>
+            <div class="mb-3">
+                <label for="bookId" class="form-label">Book ID</label>
+                <input type="text" class="form-control" id="bookId" name="bookId" value="1" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="bookName" class="form-label">Book Name</label>
+                <input type="text" class="form-control" id="bookName" name="bookName" value="Book A" required>
+            </div>
+            <div class="mb-3">
+                <label for="authorName" class="form-label">Author Name</label>
+                <input type="text" class="form-control" id="authorName" name="authorName" value="Author X" required>
+            </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" class="form-control" id="genre" name="genre" value="Fiction" required>
+            </div>
+            <div class="mb-3">
+                <label for="numOfCopies" class="form-label">Number of Copies</label>
+                <input type="number" class="form-control" id="numOfCopies" name="numOfCopies" value="5" required>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status" name="status" required>
+                    <option value="Available">Available</option>
+                    <option value="Borrowed">Borrowed</option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update Details</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS, jQuery, Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
