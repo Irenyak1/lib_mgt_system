@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url('../images/karolina-grabowska-H_eb_VfG2Ow-unsplash.jpg'); /* Replace with your background image path */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+.lib {
+    color: #fff;
+    text-align: center;
+    color: #fff;
+    padding: 200px 0;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+.card {
+background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for card */
+}
+
+.login-form, .signup-form {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for form */
+    margin: 50px auto; /* Center the form vertically and horizontally */
+}
+
+.add-author-form, .edit-author-form {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for form */
+    margin: 50px auto;
+}
+
+.add-book-form,.edit-book-form{
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc; /* 1px border */
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* White background with opacity */
+}
+
+.user-form, .edit-user-form{
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* White background with opacity */
+    margin-top: 50px; /* Adjust top margin for spacing */
+}
+
+.issue-book-form, .return-book-form{
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* White background with opacity */
+}
+
+/* .return-book-form {
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+} */
+
+/* .edit-book-form {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+} */

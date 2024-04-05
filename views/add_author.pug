@@ -1,0 +1,38 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Add Author
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet')
+  link(href='/css/styles.css' rel='stylesheet')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    a.navbar-brand(href='/') Library Management Dashboard
+    //- h4.card-title Welcome #{currentUser.firstName}
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav.ms-auto
+        li.nav-item
+          a.nav-link(href='/books/addBook') Add Book
+        li.nav-item
+          a.nav-link(href='/users/addUser') Add User
+        li.nav-item
+          a.nav-link(href='/authors/addAuthor') Add Author
+        li.nav-item
+          a.nav-link(href='/logout') Logout
+.container.d-flex.justify-content-center.align-items-center.vh-100
+  .row.justify-content-center
+    .col-md-6
+      .add-author-form
+        h2.text-center.mb-4 Add Author
+        form#add-author-form(action='/addAuthor' method='POST' name='addAuthorForm') 
+          .mb-3
+            label.form-label(for='authorId') Author ID
+            input#authorId.form-control(type='text' name='authorId')
+          .mb-3
+            label.form-label(for='fullName') Full Name
+            input#fullName.form-control(type='text' name='fullName')
+          .text-center
+            button.btn.btn-primary(type='submit') Add Author
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js')

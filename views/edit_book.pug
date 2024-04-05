@@ -1,0 +1,54 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Edit Book Details
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet')
+  link(href='/css/styles.css' rel='stylesheet')
+  style.
+    /* Custom CSS for centering the form */
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    }
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    a.navbar-brand(href='/') Library Management Dashboard
+    //- h4.card-title Welcome #{currentUser.firstName}
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav.ms-auto
+        li.nav-item
+          a.nav-link(href='/books/addBook') Add Book
+        li.nav-item
+          a.nav-link(href='/users/addUser') Add User
+        li.nav-item
+          a.nav-link(href='/authors/addAuthor') Add Author
+        li.nav-item
+          a.nav-link(href='/logout') Logout
+.edit-book-form
+  h2.text-center.mb-4 Edit Book Details
+  form#edit-book-form(action="/books/updateBook?id="+book.__id method='POST' name='editBookForm')
+    .mb-3
+      label.form-label(for='bookId') Book ID
+      input#bookId.form-control(type='text' name='bookId' value=book.bookId)
+    .mb-3
+      label.form-label(for='bookName') Book Name
+      input#bookName.form-control(type='text' name='bookName' value=book.bookName)
+    .mb-3
+      label.form-label(for='authorName') Author Name
+      input#authorName.form-control(type='text' name='authorName' value=book.authorName)
+    .mb-3
+      label.form-label(for='genre') Genre
+      input#genre.form-control(type='text' name='genre' value=book.genre)
+    .mb-3
+      label.form-label(for='numCopies') Number of Copies
+      input#numOfCopies.form-control(type='number' name='numCopies' value=book.numCopies)
+    .text-center
+      button.btn.btn-primary(type='submit') Update Details
+
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js')

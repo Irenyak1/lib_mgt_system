@@ -1,0 +1,84 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Library Management Dashboard
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet')
+  style.
+    .card {
+    margin-bottom: 20px;
+    }
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    a.navbar-brand(href='/') Library Management Dashboard
+    h4.card-title Welcome #{currentUser.firstName}
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav.ms-auto
+        li.nav-item
+          a.nav-link(href='/books/addBook') Add Book
+        li.nav-item
+          a.nav-link(href='/users/addUser') Add User
+        li.nav-item
+          a.nav-link(href='/authors/addAuthor') Add Author
+        li.nav-item
+          a.nav-link(href='/logout') Logout
+.container.mt-4
+  .row.row-cols-1.row-cols-md-2.g-4
+    .col
+      .card.shadow
+        //- img.card-img-top(src='image1.jpg' alt='...')
+        .card-body
+          h5.card-title Books in the Lib
+          p.card-text Varieties of books in the Lib: #{numVarBooksInLib}
+          p.card-text Number of books in the Lib: #{copies.totalCopies}
+          a.btn.btn-primary(href='/books/booklist') View Varieties
+    .col
+      .card.shadow
+        //- img.card-img-top(src='image2.jpg' alt='...')
+        .card-body
+          h5.card-title Registered Users
+          p.card-text Total number of Registered Users: #{numUsers}
+          a.btn.btn-primary(href='/users/userlist') View Users
+    .col
+      .card.shadow
+        //- img.card-img-top(src='image2.jpg' alt='...')
+        .card-body
+          h5.card-title Registered Authors
+          p.card-text Total number of Registered Authors: #{numAuthors}
+          a.btn.btn-primary(href='/authors/authorlist') View Authors
+    .col
+      .card.shadow
+        //- img.card-img-top(src='image3.jpg' alt='...')
+        .card-body
+          h5.card-title Available Books
+          p.card-text Number of books available: #{availableBooks.totalCopiesAvailable}
+          a.btn.btn-primary(href='') View Books
+    .col
+      .card.shadow
+        //- img.card-img-top(src='image4.jpg' alt='...')
+        .card-body
+          h5.card-title Borrowed Books
+          p.card-text Number of borrowed Books : #{numBorrowedBooks}
+          a.btn.btn-primary(href='#') View Books
+    .col
+      .card.shadow
+        //- img.card-img-top(src='image5.jpg' alt='...')
+        .card-body
+          h5.card-title Books Overdue
+          p.card-text Number of books overdue: #{NumofbooksInLib}
+          a.btn.btn-primary(href='#') View Books
+    .col
+      .card.shadow
+        //- img.card-img-top(src='image6.jpg' alt='...')
+        .card-body
+          h5.card-title Popular Book Title: #{NumofbooksInLib}
+          a.btn.btn-primary(href='#') View Details
+    .col
+      .card.shadow
+        //- img.card-img-top(src='image5.jpg' alt='...')
+        .card-body
+          h5.card-title Popular Genre: #{NumofbooksInLib}
+          a.btn.btn-primary(href='#') View Books
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js')

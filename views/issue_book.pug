@@ -1,0 +1,56 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Issue Book
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet')
+  link(href='/css/styles.css' rel='stylesheet')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    a.navbar-brand(href='/') Library Management Dashboard
+    //- h4.card-title Welcome #{currentUser.firstName}
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav.ms-auto
+        li.nav-item
+          a.nav-link(href='/books/addBook') Add Book
+        li.nav-item
+          a.nav-link(href='/users/addUser') Add User
+        li.nav-item
+          a.nav-link(href='/authors/addAuthor') Add Author
+        li.nav-item
+          a.nav-link(href='/logout') Logout
+.container.d-flex.justify-content-center.align-items-center.vh-100
+  .issue-book-form
+    h2.text-center.mb-4 Issue Book
+    form#issue-book-form(action="/books/issueBook?id="+book.__id method='POST' name='issueBookForm')
+      .mb-3
+        label.form-label(for='borrower') Select Borrower
+        select#borrower.form-control(name='borrower')
+          each user in users
+            option(value=user._id) #{user.fullName}
+      .mb-3
+        label.form-label(for='bookId') Book ID
+        input#bookId.form-control(value = book.bookId name='bookId')
+      .mb-3
+        label.form-label(for='bookName') Book Name
+        input#bookName.form-control(value = book.bookName name='bookName')
+      .mb-3
+        label.form-label(for='copiesBorrowed') Number of Copies
+        input#copiesBorrowed.form-control(type='number' name='copiesBorrowed')
+      .mb-3
+        label.form-label(for='issueDate') Issue Date
+        input#issueDate.form-control(type='date' name='issueDate' required='')
+      .mb-3
+        label.form-label(for='returnDate') Specified Return Date
+        input#specifiedReturnDate.form-control(type='date' name='specifiedReturnDate' required='')
+      .mb-3
+        label.form-label(for='status') Status
+        select#status.form-control(name='status')
+          option(value='') Select status
+          option(value='borrowed') Borrowed
+      .text-center
+        button.btn.btn-primary(type='submit') Issue Book
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js')
+script(src="/js/fill_return_date.js") 
