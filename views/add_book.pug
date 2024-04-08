@@ -36,6 +36,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
           .mb-3
             label.form-label(for='authorId') Author Name
             select#authorName.form-control(name='authorName')
+              if authors.length
               each author in authors
                 option(value=author._id) #{author.fullName}
           .mb-3

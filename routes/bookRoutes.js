@@ -10,12 +10,14 @@ const User = require("../models/User");
 // Get add book form
 router.get("/books/addBook", async (req, res) => {
   if (req.session.user) {
-    let authorlist = await AuthorModel.find();
-    console.log("my list of authors:", authorlist);
+    // let authorlist = await AuthorModel.find();
+    let items = await AuthorModel.find();
+    // console.log("my list of authors:", authorlist);
     res.render("add_book", {
-      authors: authorlist,
+      authors: items,
       title: "Register Book form",
     });
+    console.log("These are authors", items)
   } else {
     console.log("Can't find session");
     res.redirect("/login");
@@ -27,7 +29,7 @@ router.post("/books/addBook", async (req, res) => {
   if (req.session.user) {
     try {
       const book = new BookModel(req.body);
-      console.log(book);
+      console.log("my new book", book);
       await book.save();
       res.redirect("/books/booklist");
     } catch (err) {
@@ -42,9 +44,10 @@ router.post("/books/addBook", async (req, res) => {
 
 // retrieve books from the database
 router.get("/books/booklist", async (req, res) => {
-  if (req.session.user) {
+  // if (req.session.user) {
     try {
-      const items = await BookModel.find();
+      const items = await BookModel.find().populate('authorName', 'fullName');
+      // populate('authorName', 'fullName').exec();
       if (req.query.genre) {
         items = await BookModel.find({ genre: req.query.genre });
       }
@@ -56,10 +59,10 @@ router.get("/books/booklist", async (req, res) => {
     } catch (err) {
       res.status(400).send("Unable to find items in the database");
     }
-  } else {
-    console.log("Can't find session");
-    res.redirect("/login");
-  }
+  // } else {
+  //   console.log("Can't find session");
+  //   res.redirect("/login");
+  // }
 });
 
 // get update book form
@@ -70,6 +73,7 @@ router.get("/books/updateBook/:id", async (req, res) => {
       res.render("edit_book", { book: updateBook });
     } catch (err) {
       res.status(400).send("Unable to find item in the database");
+      console.log(err)
     }
   } else {
     console.log("Can't find session");
@@ -81,10 +85,11 @@ router.get("/books/updateBook/:id", async (req, res) => {
 router.post("/books/updateBook", async (req, res) => {
   if (req.session.user) {
     try {
-      await BookModel.findOneAndUpdate({ _id: req.query.id }, req.body);
+      await BookModel.findByIdAndUpdate({ _id: req.query.id }, req.body);
       res.redirect("/books/booklist");
     } catch (err) {
       res.status(404).send("Unable to update item in the database");
+      console.log("Book update error", err)
     }
   } else {
     console.log("Can't find session");
@@ -106,7 +111,6 @@ router.post("/books/deleteBook", async (req, res) => {
     res.redirect("/login");
   }
 });
-
 
 // ISSUE BOOK AND RETURN BOOK ROUTES
 // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -173,45 +177,49 @@ router.get("/books/issueBook/:id", async (req, res) => {
 // Route to borrow a book
 router.post("/books/issueBook", async (req, res) => {
   // const bookId = req.params.bookId;
+  if (req.session.user) {
+    try {
+      // Find the book by its ID in the Books collection
+      const book = await BookModel.findById({ _id: req.params.id });
 
-  try {
-    // Find the book by its ID in the Books collection
-    const book = await BookModel.findById({ _id: req.params.id });
+      if (!book) {
+        return res.status(404).json({ message: "Book not found" });
+      }
 
-    if (!book) {
-      return res.status(404).json({ message: "Book not found" });
+      // Check if there are available copies of the book
+      if (book.numCopies <= 0) {
+        return res.status(400).json({ message: "No copies available" });
+      }
+
+      // Update the number of copies in the Books collection
+      book.numCopies -= 1;
+      console.log("new copies", book.numCopies);
+      await book.save();
+
+      // Create a new BorrowedBook document
+      const borrowedBook = new IssueModel({
+        borrower: req.body.borrower, // Assuming borrower is provided in the request body
+        bookId: book.bookId,
+        bookName: book.bookName,
+        issueDate: new Date(),
+        specifiedReturnDate: req.body.specifiedReturnDate,
+        status: req.body.status,
+      });
+
+      // Save the borrowed book to the BorrowedBooks collection
+      await borrowedBook.save();
+
+      return res
+        .status(200)
+        .json({ message: "Book borrowed successfully", borrowedBook });
+      // res.redirect('/books/booklist')
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Internal server error" });
     }
-
-    // Check if there are available copies of the book
-    if (book.numCopies <= 0) {
-      return res.status(400).json({ message: "No copies available" });
-    }
-
-    // Update the number of copies in the Books collection
-    book.numCopies -= 1;
-    console.log("new copies", book.numCopies);
-    await book.save();
-
-    // Create a new BorrowedBook document
-    const borrowedBook = new IssueModel({
-      borrower: req.body.borrower, // Assuming borrower is provided in the request body
-      bookId: book.bookId,
-      bookName: book.bookName,
-      issueDate: new Date(),
-      specifiedReturnDate: req.body.specifiedReturnDate,
-      status: req.body.status,
-    });
-
-    // Save the borrowed book to the BorrowedBooks collection
-    await borrowedBook.save();
-
-    return res
-      .status(200)
-      .json({ message: "Book borrowed successfully", borrowedBook });
-    // res.redirect('/books/booklist')
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ message: "Internal server error" });
+  } else {
+    console.log("Can't find session");
+    res.redirect("/login");
   }
 });
 

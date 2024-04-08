@@ -26,7 +26,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     .col-md-6
       .add-author-form
         h2.text-center.mb-4 Add Author
-        form#add-author-form(action='/addAuthor' method='POST' name='addAuthorForm') 
+        form#add-author-form(action='/authors/addAuthor' method='POST' name='addAuthorForm') 
           .mb-3
             label.form-label(for='authorId') Author ID
             input#authorId.form-control(type='text' name='authorId')

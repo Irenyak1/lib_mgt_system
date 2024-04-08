@@ -24,7 +24,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 .container.d-flex.justify-content-center.align-items-center.vh-100
   .user-form
     h2.text-center.mb-4 Add User
-    form#add-user-form(action='/addUser' method='POST' name='addUserForm') 
+    form#add-user-form(action='/users/addUser' method='POST' name='addUserForm') 
       .mb-3
         label.form-label(for='userID') User ID
         input#userID.form-control(type='text' name='userID')

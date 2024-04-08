@@ -24,7 +24,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
 .container.d-flex.justify-content-center.align-items-center.vh-100
   .edit-user-form
     h2.text-center.mb-4 Edit User Details
-    form#edit-user-form(action="/users/updateUser?id="+user.__id method='POST' name='edituserForm')
+    form#edit-user-form(action="/users/updateUser?id="+user._id method='POST' name='edituserForm')
       .mb-3
         label.form-label(for='userID') User ID
         input#userID.form-control(type='text' name='userID' value=user.userID)

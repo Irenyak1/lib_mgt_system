@@ -32,7 +32,7 @@ background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for form */
-    margin: 50px auto; /* Center the form vertically and horizontally */
+    margin: 60px auto; /* Center the form vertically and horizontally */
 }
 
 .add-author-form, .edit-author-form {
@@ -44,7 +44,7 @@ background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background
     margin: 50px auto;
 }
 
-.add-book-form,.edit-book-form{
+.add-book-form, .edit-book-form{
     width: 400px;
     padding: 20px;
     border: 1px solid #ccc; /* 1px border */
