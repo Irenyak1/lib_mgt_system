@@ -15,7 +15,7 @@ require("dotenv").config();
 // import models
 const Registration = require("./models/Registration");
 
-const port = process.env.port || 4100;
+const port = 4500;
 
 // import routes
 const indexRoutes = require("./routes/indexRoutes");
@@ -77,11 +77,14 @@ app.get("*", (req, res) => {
 });
 
 //set app to listen to the specified port
-app.listen(port, err => {
-  if (err) {
-    return console.log("Error", err);
-  }
-  console.log(`App running on port ${port}`);
-});
+// app.listen(port, err => {
+//   if (err) {
+//     return console.log("Error", err);
+//   }
+//   console.log(`App running on port ${port}`);
+// });
+
+// hosting
+app.listen(process.env.PORT || port,()=> console.log(`listening on port ${port}`));
 
 
