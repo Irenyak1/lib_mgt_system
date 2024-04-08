@@ -44,10 +44,9 @@ router.post("/books/addBook", async (req, res) => {
 
 // retrieve books from the database
 router.get("/books/booklist", async (req, res) => {
-  // if (req.session.user) {
+  if (req.session.user) {
     try {
-      const items = await BookModel.find().populate('authorName', 'fullName');
-      // populate('authorName', 'fullName').exec();
+      let items = await BookModel.find().populate('authorName', 'fullName').exec()
       if (req.query.genre) {
         items = await BookModel.find({ genre: req.query.genre });
       }
@@ -59,10 +58,10 @@ router.get("/books/booklist", async (req, res) => {
     } catch (err) {
       res.status(400).send("Unable to find items in the database");
     }
-  // } else {
-  //   console.log("Can't find session");
-  //   res.redirect("/login");
-  // }
+  } else {
+    console.log("Can't find session");
+    res.redirect("/login");
+  }
 });
 
 // get update book form
